@@ -39,7 +39,8 @@ def main():
     from engine import load_data
     issues, hh, tt, oo = load_data()
     best, pool_size = bruteforce.search_best(hh, tt, oo, bruteforce.WINDOW)
-    new_combo = best['chosen']
+    # chosen 可能是 list（方案A）或 dict（方案B含members），统一归一化为成员列表
+    new_combo = best['chosen'] if isinstance(best['chosen'], list) else best['chosen']['members']
     new_chosen_sig = [(m['digit'], m['formula']) for m in new_combo]
 
     # 判断5胆组是否变化（对比旧 best_formula.json）

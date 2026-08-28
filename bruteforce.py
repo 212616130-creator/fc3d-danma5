@@ -131,6 +131,9 @@ def search_best(hh, tt, oo, window=WINDOW, verbose=True):
     # 最终选择：B 优先（更严，组命中率更高才替换），否则 A
     chosen = combo_b if combo_b and combo_b['group_hits'] > _group_hits(greedy, F, draw3) else greedy
     chosen_rate = _group_hits(chosen, F, draw3) / window
+    # 统一 chosen 为成员列表（list），调用方无需再区分方案A/B
+    if isinstance(chosen, dict):
+        chosen = chosen['members']
 
     return {
         'window': window,
