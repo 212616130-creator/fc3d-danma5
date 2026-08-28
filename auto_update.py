@@ -85,6 +85,9 @@ def main():
             'chosen': new_combo,
             'chosen_rate': round(best['chosen_rate'] * 100, 2),
             'chosen_hits': best['chosen_hits'],
+            'cand_digits': best.get('cand_digits', []),
+            'cand_hits': best.get('cand_hits', {}),
+            'digit_best': best.get('digit_best', {}),
         }
         with open(COMBO_JSON, 'w', encoding='utf-8') as f:
             json.dump(result, f, ensure_ascii=False, indent=2)

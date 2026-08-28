@@ -15,7 +15,7 @@
 ## 本地使用
 
 ```bash
-python update.py     # 一键：联网补抓 → 穷举选5胆 → 200期回测 → 生成 static/index.html
+python update.py     # 一键：联网补抓 → 穷举选5胆 → 200期回测 → 预测跟踪 → 生成 static/index.html
 ```
 
 预览：`static/index.html` 或根目录 `index.html`（本地静态服务器打开，移动端 480px 适配）。
@@ -24,19 +24,28 @@ python update.py     # 一键：联网补抓 → 穷举选5胆 → 200期回测 
 
 ```
 D:\选胆码5\
-├─ auto_update.py   云端全自动入口（抓数据→穷举→回测→生成页面，幂等）
+├─ auto_update.py   云端全自动入口（抓数据→穷举→回测→预测跟踪→生成页面，幂等）
 ├─ engine.py        CSV 读取/窗口切片/空数据与数据量校验
 ├─ fetch.py         多源降级抓取 + 追加 CSV（防倒灌）
 ├─ formulas.py      59 特征 + 905万公式生成器（复用杀一码版本）
 ├─ bruteforce.py    numpy 向量化穷举 + 选胆策略（Top榜/归并/5胆组合）
-├─ backtest.py      固定 5 胆组 200 期逐期回测 + 下期预测
-├─ gen_site.py      生成单文件 index.html（紫渐变移动端风格）
-├─ update.py        本地一键：同步→穷举→回测→生成页面
+├─ backtest.py      固定 5 胆组 200 期逐期回测 + 下期预测（含去重补足）
+├─ tracker.py       每日预测跟踪（开奖前落盘 + 开奖后回填）
+├─ gen_site.py      生成单文件 index.html（紫渐变移动端风格，含预测跟踪区块）
+├─ update.py        本地一键：同步→穷举→回测→预测跟踪→生成页面
 ├─ README.md        说明 + 访问地址 + 风险声明
 ├─ data/fc3d-history.csv
+├─ data/predictions.jsonl   每日预测跟踪记录（真实样本外）
 ├─ .github/workflows/update.yml   三重 cron + 幂等 + force_deploy
 └─ static/index.html   生成成品
 ```
+
+## 每日预测跟踪
+
+- 预测在**开奖前**落盘到 `data/predictions.jsonl`（期号 + 5胆 + 预测时间），杜绝事后编造
+- 下次运行自动用已开奖数据**回填结果**（draw/hit），同 issue 幂等不重复
+- 页面「📅 每日预测跟踪」区块展示累计真实命中率（唯一样本外指标）+ 近30期明细
+- 与回测表（905万公式窗口内拟合，会虚高）严格区分：跟踪表才是真实水平
 
 ## 云端全自动（GitHub Actions）
 
