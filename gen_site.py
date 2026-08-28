@@ -133,6 +133,7 @@ body { background: #f0f2f5; font-family: -apple-system, BlinkMacSystemFont, 'Seg
 .tr-miss { border-left: 3px solid #f44336; }
 .badge-y { color: #2e7d32; font-weight: 700; }
 .badge-n { color: #c62828; font-weight: 700; }
+.badge-w { color: #9e9e9e; font-weight: 700; }
 .info { background: #fff; border-radius: 8px; padding: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-bottom: 8px; }
 .info h3 { font-size: .85rem; margin-bottom: 6px; }
 .algo { font-size: .68rem; padding: 6px 8px; background: #f5f5f5; border-radius: 4px; line-height: 1.6; margin-bottom: 5px; }
@@ -251,13 +252,14 @@ document.getElementById('tPending').textContent = P.track_pending + '期';
 const tbody2 = document.getElementById('trackBody');
 P.track.recent.forEach(function(r) {
   const tr = document.createElement('tr');
-  tr.className = r.hit ? 'tr-hit' : 'tr-miss';
+  const pending = (r.hit === undefined || r.hit === null);
+  tr.className = pending ? '' : (r.hit ? 'tr-hit' : 'tr-miss');
   const drawTxt = r.draw ? r.draw.join('') : '待开奖';
-  const resTxt = r.hit === undefined ? '⏳' : (r.hit ? '✓' : '✗');
+  const resTxt = pending ? '⏳' : (r.hit ? '✓' : '✗');
   tr.innerHTML =
     '<td>' + r.issue + '</td><td><b>' + drawTxt + '</b></td>' +
     '<td class="danma">' + r.danma.join(' ') + '</td>' +
-    '<td class="' + (r.hit ? 'badge-y' : 'badge-n') + '">' + resTxt + '</td>';
+    '<td class="' + (pending ? 'badge-w' : (r.hit ? 'badge-y' : 'badge-n')) + '">' + resTxt + '</td>';
   tbody2.appendChild(tr);
 });
 </script>

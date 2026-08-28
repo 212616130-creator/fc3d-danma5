@@ -81,10 +81,9 @@ def record_prediction(issue, danma, path=TRACK_PATH):
 
 
 def summary(path=TRACK_PATH):
-    """汇总：已回填的真实命中统计（只算有开奖结果的）"""
-    rows = [r for r in load_track(path) if 'hit' in r]
-    if not rows:
-        return {'total': 0, 'hits': 0, 'rate': 0.0, 'max_streak': 0, 'recent': []}
+    """汇总：真实命中统计只算已回填；明细表含全部记录（待开奖也显示 ⏳）"""
+    all_rows = load_track(path)
+    rows = [r for r in all_rows if 'hit' in r]  # 命中率只算已回填
     hits = sum(1 for r in rows if r['hit'])
     mx = cur = 0
     for r in rows:
@@ -93,7 +92,7 @@ def summary(path=TRACK_PATH):
         else:
             cur += 1
             mx = max(mx, cur)
-    recent = sorted(rows, key=lambda x: x['issue'], reverse=True)[:30]  # 近期→远期
+    recent = sorted(all_rows, key=lambda x: x['issue'], reverse=True)[:30]  # 近期→远期，含待开奖
     recent = [{
         'issue': r['issue'], 'danma': r['danma'],
         'draw': r.get('draw'), 'hit': r.get('hit'),
@@ -101,6 +100,6 @@ def summary(path=TRACK_PATH):
     } for r in recent]
     return {
         'total': len(rows), 'hits': hits,
-        'rate': round(hits / len(rows) * 100, 2),
+        'rate': round(hits / len(rows) * 100, 2) if rows else 0.0,
         'max_streak': mx, 'recent': recent,
     }
