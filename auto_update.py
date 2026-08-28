@@ -3,7 +3,7 @@
 福彩3D 选5胆码 — 云端全自动更新入口（GitHub Actions 定时运行）
 =============================================
 流程：多源降级抓取最新开奖 → 追加到CSV（自动补新期） → 暴力穷举选5胆
-      → 200期回测 → 生成 static/index.html（部署到 GitHub Pages）
+      → 200期回测 → 每日预测跟踪(回填昨日/记录今日) → 生成 static/index.html
 幂等设计：数据与5胆组均无变化时**不重写页面**（含时间戳），
          workflow 的 git diff 检测不到任何变化即跳过提交与部署，零无效更新。
 """
@@ -17,6 +17,7 @@ os.chdir(ROOT)  # 保证 data/ static/ 相对路径正确
 
 OUT_HTML = 'static/index.html'
 COMBO_JSON = 'best_formula.json'
+TRACK_PATH = 'data/predictions.jsonl'
 
 
 def main():
@@ -26,7 +27,7 @@ def main():
     print(f"  时间(北京): {datetime.now(BJT).strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 46)
 
-    print("\n[1/4] 多源降级抓取 + 追加CSV")
+    print("\n[1/5] 多源降级抓取 + 追加CSV")
     added = 0
     try:
         import fetch
@@ -34,7 +35,7 @@ def main():
     except Exception as e:
         print(f"  ⚠ 数据同步异常，沿用现有CSV: {str(e)[:80]}")
 
-    print("\n[2/4] 暴力穷举（最新200期，905万公式选5胆）")
+    print("\n[2/5] 暴力穷举（最新200期，905万公式选5胆）")
     import bruteforce
     from engine import load_data
     issues, hh, tt, oo = load_data()
@@ -52,10 +53,31 @@ def main():
         pass
     combo_changed = (old_chosen_sig != new_chosen_sig)
 
-    if added == 0 and not combo_changed:
-        print("\n[3/4] 数据与5胆组均无变化，跳过页面生成（零无效更新）")
+    # 下期预测（开奖前落盘用）
+    import backtest
+    pred = backtest.predict_next('data/fc3d-history.csv', new_combo)
+
+    print("\n[3/5] 每日预测跟踪（回填昨日 + 记录今日）")
+    import tracker
+    # 1) 回填：已记录的预测，若对应期已开奖，补真实开奖与命中
+    issues_map = {iss: [b, s, g] for iss, b, s, g in zip(issues, hh, tt, oo)}
+    filled = tracker.backfill(issues_map, TRACK_PATH)
+    if filled:
+        print(f"  ✓ 已回填 {filled} 期预测结果")
+    # 2) 记录：下期预测落盘（同 issue 已存在则跳过，幂等）
+    recorded = tracker.record_prediction(pred['next_issue'], pred['danma'], TRACK_PATH)
+    if recorded:
+        print(f"  ✓ 已记录预测 {pred['next_issue']}: {pred['danma']}")
     else:
-        print("\n[3/4] 200期回测 + 生成网页")
+        print(f"  - 预测 {pred['next_issue']} 已存在，跳过（幂等）")
+    track_summary = tracker.summary(TRACK_PATH)
+
+    # 页面是否需要重建：数据新增 / 5胆组变化 / 回填或新记录发生
+    track_changed = (filled > 0 or recorded)
+    if added == 0 and not combo_changed and not track_changed:
+        print("\n[4/5] 数据/5胆组/预测跟踪均无变化，跳过页面生成（零无效更新）")
+    else:
+        print("\n[4/5] 200期回测 + 生成网页")
         result = {
             'window': bruteforce.WINDOW,
             'data_info': {'n_issues': len(issues), 'first': issues[0], 'last': issues[-1]},
@@ -71,7 +93,8 @@ def main():
         import gen_site
         gen_site.main(out_path=OUT_HTML)
 
-    print("\n[4/4] 完成")
+    print("\n[5/5] 完成")
+    print(f"  预测跟踪: 累计 {track_summary['total']} 期已开奖, 真实命中 {track_summary['hits']} 期 = {track_summary['rate']}%")
     print(f"  总耗时 {time.time()-t0:.1f} 秒")
 
 

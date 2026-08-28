@@ -8,6 +8,7 @@ import json
 import datetime
 from datetime import timezone, timedelta
 import backtest
+import tracker
 from engine import load_data
 
 BJT = timezone(timedelta(hours=8))
@@ -86,6 +87,8 @@ def build_data():
         'max_streak': s200['max_streak'],
         'baseline': 91.67,   # 5胆命中随机基线 1 - C(5,3)/C(10,3)
         'rows': rows,
+        'track': tracker.summary(),
+        'track_pending': len([r for r in tracker.load_track() if 'hit' not in r]),
     }
 
 
@@ -172,6 +175,24 @@ body { background: #f0f2f5; font-family: -apple-system, BlinkMacSystemFont, 'Seg
     </table>
   </div>
 </div>
+<div class="table-wrap">
+  <h3>📅 每日预测跟踪 <span style="font-size:.65rem;color:#999">(开奖前记录 · 开奖后回填 · 真实样本外)</span></h3>
+  <div class="stats" style="margin:8px 12px 6px">
+    <div class="stat stat-main"><div class="val g" id="tRate">-</div><div class="lbl">★累计真实命中</div></div>
+    <div class="stat"><div class="val" id="tTotal">-</div><div class="lbl">已开奖期数</div></div>
+    <div class="stat"><div class="val" id="tHits">-</div><div class="lbl">命中期数</div></div>
+    <div class="stat"><div class="val" id="tPending">-</div><div class="lbl">待开奖</div></div>
+  </div>
+  <div class="scroll" style="max-height:360px">
+    <table class="tbl">
+      <thead><tr><th>期号</th><th>开奖</th><th>5胆</th><th>结果</th></tr></thead>
+      <tbody id="trackBody"></tbody>
+    </table>
+  </div>
+  <div style="font-size:.65rem;color:#888;padding:6px 12px 10px;line-height:1.6">
+    记录规则：预测在开奖前落盘（第i期预测只用第i-1/i-2期），开奖后自动回填。累计真实命中率是唯一的样本外指标，与回测表(历史拟合)无关。
+  </div>
+</div>
 <div class="info">
   <h3>5个胆码对应的公式（暴力穷举·最新200期单码命中率最高）</h3>
   <div id="algoList"></div>
@@ -222,6 +243,23 @@ document.getElementById('predIssue').textContent = P.next_issue;
 document.getElementById('lastInfo').textContent = '上期 ' + P.last_issue + ' = ' + P.last_draw;
 document.getElementById('updateTime').textContent = '更新 ' + P.updated;
 document.getElementById('dataInfo').textContent = P.data_info.last;
+// 每日预测跟踪
+document.getElementById('tRate').textContent = P.track.rate + '%';
+document.getElementById('tTotal').textContent = P.track.total + '期';
+document.getElementById('tHits').textContent = P.track.hits + '期';
+document.getElementById('tPending').textContent = P.track_pending + '期';
+const tbody2 = document.getElementById('trackBody');
+P.track.recent.forEach(function(r) {
+  const tr = document.createElement('tr');
+  tr.className = r.hit ? 'tr-hit' : 'tr-miss';
+  const drawTxt = r.draw ? r.draw.join('') : '待开奖';
+  const resTxt = r.hit === undefined ? '⏳' : (r.hit ? '✓' : '✗');
+  tr.innerHTML =
+    '<td>' + r.issue + '</td><td><b>' + drawTxt + '</b></td>' +
+    '<td class="danma">' + r.danma.join(' ') + '</td>' +
+    '<td class="' + (r.hit ? 'badge-y' : 'badge-n') + '">' + resTxt + '</td>';
+  tbody2.appendChild(tr);
+});
 </script>
 </body>
 </html>
