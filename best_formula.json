@@ -1,0 +1,104 @@
+{
+  "window": 200,
+  "data_info": {
+    "n_issues": 8735,
+    "first": "2002001",
+    "last": "2026229"
+  },
+  "pool_size": 9053550,
+  "chosen": [
+    {
+      "digit": 2,
+      "formula": "2*P2+3*go+1*mxmd+9",
+      "hits": 85
+    },
+    {
+      "digit": 4,
+      "formula": "1*P+3*gh+1*bpr+0",
+      "hits": 85
+    },
+    {
+      "digit": 7,
+      "formula": "2*b+1*md+3*S3+9",
+      "hits": 85
+    },
+    {
+      "digit": 8,
+      "formula": "2*sg+3*P2+1*db+0",
+      "hits": 86
+    },
+    {
+      "digit": 9,
+      "formula": "3*bg+1*bsg+1*S3+4",
+      "hits": 84
+    }
+  ],
+  "chosen_rate": 96.5,
+  "chosen_hits": 193,
+  "cand_digits": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "cand_hits": {
+    "0": 88,
+    "1": 84,
+    "2": 85,
+    "3": 83,
+    "4": 85,
+    "5": 83,
+    "6": 85,
+    "7": 85,
+    "8": 86,
+    "9": 84
+  },
+  "digit_best": {
+    "0": {
+      "formula": "2*b2+2*bsg+2*d12+4",
+      "hits": 88
+    },
+    "1": {
+      "formula": "2*sum2+3*mxmn+2*ds+2",
+      "hits": 84
+    },
+    "2": {
+      "formula": "2*P2+3*go+1*mxmd+9",
+      "hits": 85
+    },
+    "3": {
+      "formula": "3*g+3*bg+1*PL+2",
+      "hits": 83
+    },
+    "4": {
+      "formula": "1*P+3*gh+1*bpr+0",
+      "hits": 85
+    },
+    "5": {
+      "formula": "2*P2+1*bh+1*gpr+7",
+      "hits": 83
+    },
+    "6": {
+      "formula": "2*g+2*mxmd+2*gh+0",
+      "hits": 85
+    },
+    "7": {
+      "formula": "2*b+1*md+3*S3+9",
+      "hits": 85
+    },
+    "8": {
+      "formula": "2*sg+3*P2+1*db+0",
+      "hits": 86
+    },
+    "9": {
+      "formula": "3*bg+1*bsg+1*S3+4",
+      "hits": 84
+    }
+  }
+}
