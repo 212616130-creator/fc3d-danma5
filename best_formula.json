@@ -1,40 +1,40 @@
 {
   "window": 200,
   "data_info": {
-    "n_issues": 8735,
+    "n_issues": 8736,
     "first": "2002001",
-    "last": "2026229"
+    "last": "2026230"
   },
   "pool_size": 9053550,
   "chosen": [
     {
-      "digit": 2,
-      "formula": "2*P2+3*go+1*mxmd+9",
-      "hits": 85
+      "digit": 1,
+      "formula": "1*P+3*gh+1*bpr+0",
+      "hits": 84
     },
     {
-      "digit": 4,
-      "formula": "1*P+3*gh+1*bpr+0",
+      "digit": 2,
+      "formula": "1*sum4+2*SL+1*gh+7",
+      "hits": 86
+    },
+    {
+      "digit": 6,
+      "formula": "3*bg+1*bsg+1*S3+4",
       "hits": 85
     },
     {
       "digit": 7,
-      "formula": "2*b+1*md+3*S3+9",
-      "hits": 85
+      "formula": "2*g+3*sp+3",
+      "hits": 84
     },
     {
       "digit": 8,
-      "formula": "2*sg+3*P2+1*db+0",
-      "hits": 86
-    },
-    {
-      "digit": 9,
-      "formula": "3*bg+1*bsg+1*S3+4",
-      "hits": 84
+      "formula": "2*b2+2*bsg+2*d12+4",
+      "hits": 87
     }
   ],
-  "chosen_rate": 96.5,
-  "chosen_hits": 193,
+  "chosen_rate": 97.0,
+  "chosen_hits": 194,
   "cand_digits": [
     0,
     1,
@@ -48,56 +48,56 @@
     9
   ],
   "cand_hits": {
-    "0": 88,
+    "0": 84,
     "1": 84,
-    "2": 85,
+    "2": 86,
     "3": 83,
-    "4": 85,
-    "5": 83,
+    "4": 83,
+    "5": 85,
     "6": 85,
-    "7": 85,
-    "8": 86,
+    "7": 84,
+    "8": 87,
     "9": 84
   },
   "digit_best": {
     "0": {
-      "formula": "2*b2+2*bsg+2*d12+4",
-      "hits": 88
+      "formula": "1*b2+3*dS+2*gpr+1",
+      "hits": 84
     },
     "1": {
-      "formula": "2*sum2+3*mxmn+2*ds+2",
+      "formula": "1*P+3*gh+1*bpr+0",
       "hits": 84
     },
     "2": {
-      "formula": "2*P2+3*go+1*mxmd+9",
-      "hits": 85
+      "formula": "1*sum4+2*SL+1*gh+7",
+      "hits": 86
     },
     "3": {
-      "formula": "3*g+3*bg+1*PL+2",
+      "formula": "3*bsg+2*db+1*ds+6",
       "hits": 83
     },
     "4": {
-      "formula": "1*P+3*gh+1*bpr+0",
-      "hits": 85
-    },
-    "5": {
-      "formula": "2*P2+1*bh+1*gpr+7",
+      "formula": "3*bp+3*so+1*mnmd+6",
       "hits": 83
     },
+    "5": {
+      "formula": "2*sg+3*P2+1*db+0",
+      "hits": 85
+    },
     "6": {
-      "formula": "2*g+2*mxmd+2*gh+0",
+      "formula": "3*bg+1*bsg+1*S3+4",
       "hits": 85
     },
     "7": {
-      "formula": "2*b+1*md+3*S3+9",
-      "hits": 85
+      "formula": "2*g+3*sp+3",
+      "hits": 84
     },
     "8": {
-      "formula": "2*sg+3*P2+1*db+0",
-      "hits": 86
+      "formula": "2*b2+2*bsg+2*d12+4",
+      "hits": 87
     },
     "9": {
-      "formula": "3*bg+1*bsg+1*S3+4",
+      "formula": "2*s+2*d3+3*so+3",
       "hits": 84
     }
   }
