@@ -16,6 +16,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 os.chdir(ROOT)  # 保证 data/ static/ 相对路径正确
 
 OUT_HTML = 'static/index.html'
+ROOT_HTML = 'index.html'  # GitHub Pages legacy 来源 = main 分支根目录，必须同步
 COMBO_JSON = 'best_formula.json'
 TRACK_PATH = 'data/predictions.jsonl'
 
@@ -95,6 +96,9 @@ def main():
         os.makedirs('static', exist_ok=True)
         import gen_site
         gen_site.main(out_path=OUT_HTML)
+        # 同步根目录 index.html：GitHub Pages legacy 来源是 main 分支根目录，不同步则线上 404/0字节
+        import shutil
+        shutil.copy(OUT_HTML, ROOT_HTML)
 
     print("\n[5/5] 完成")
     print(f"  预测跟踪: 累计 {track_summary['total']} 期已开奖, 真实命中 {track_summary['hits']} 期 = {track_summary['rate']}%")

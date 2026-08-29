@@ -1,7 +1,6 @@
 __pycache__/
 *.pyc
 .workbuddy/
-# 本地预览版（云端统一用 static/index.html）
-/index.html
+# 根目录 index.html 是 GitHub Pages legacy 部署源（main 分支根目录），必须提交
 results/
 test_window.py

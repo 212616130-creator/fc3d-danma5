@@ -57,7 +57,7 @@ jobs:
             echo "changed=true" >> $GITHUB_OUTPUT
             echo "force_deploy=true: 强制部署"
           # 以核心产物判断：CSV/公式/页面/预测跟踪任一有变化才算真实更新（无变化时脚本不重写页面，时间戳不会误判）
-          elif git diff --quiet data/fc3d-history.csv && git diff --quiet best_formula.json && git diff --quiet static/index.html && git diff --quiet data/predictions.jsonl; then
+          elif git diff --quiet data/fc3d-history.csv && git diff --quiet best_formula.json && git diff --quiet static/index.html && git diff --quiet data/predictions.jsonl && git diff --quiet index.html; then
             echo "changed=false" >> $GITHUB_OUTPUT
             git checkout -- static/index.html 2>/dev/null || true
             echo "无新数据/无5胆组变化/无预测跟踪变化，跳过提交与部署"
@@ -71,7 +71,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A data/ static/ best_formula.json || true
+          git add -A data/ static/ best_formula.json index.html || true
           git commit -m "自动更新$(TZ='Asia/Shanghai' date +%m%d) [skip ci]" || true
           for i in 1 2 3; do
             if git pull --rebase origin main && git push; then
@@ -86,7 +86,7 @@ jobs:
         if: steps.check.outputs.changed == 'true'
         run: |
           mkdir -p _site
-          cp static/index.html _site/
+          cp index.html _site/
 
       - name: 配置Pages
         if: steps.check.outputs.changed == 'true'
