@@ -73,15 +73,17 @@ def main():
         print(f"  - 预测 {pred['next_issue']} 已存在，跳过（幂等）")
     track_summary = tracker.summary(TRACK_PATH)
 
-    # 页面是否需要重建：数据新增 / 5胆组变化 / 回填或新记录发生
+    # 页面是否需要重建：数据新增 / 5胆组变化 / 回填或新记录发生 / FORCE_REBUILD强制
     track_changed = (filled > 0 or recorded)
     force_rebuild = os.environ.get('FORCE_REBUILD', '0').strip().lower() in ('1', 'true', 'yes')
-    if force_rebuild:
-        print("\n[4/5] FORCE_REBUILD=1，强制重建页面")
-    elif added == 0 and not combo_changed and not track_changed:
+    skip_gen = (added == 0 and not combo_changed and not track_changed and not force_rebuild)
+    if skip_gen:
         print("\n[4/5] 数据/5胆组/预测跟踪均无变化，跳过页面生成（零无效更新）")
     else:
-        print("\n[4/5] 200期回测 + 生成网页")
+        if force_rebuild:
+            print("\n[4/5] FORCE_REBUILD=1，强制重建页面")
+        else:
+            print("\n[4/5] 200期回测 + 生成网页")
         result = {
             'window': bruteforce.WINDOW,
             'data_info': {'n_issues': len(issues), 'first': issues[0], 'last': issues[-1]},
