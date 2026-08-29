@@ -71,6 +71,14 @@ def build_data():
         'danma': r['danma'], 'hit': r['hit'],
     } for r in bt200['results']]
 
+    # 顶部5胆与跟踪记录对齐：若当期预测已在 predictions.jsonl（待开奖），
+    # 直接用落盘记录（官方预测），避免重算时 digit_best 池变化导致顶部与跟踪表不一致
+    danma = pred['danma']
+    for tr in tracker.load_track():
+        if tr['issue'] == pred['next_issue'] and 'hit' not in tr:
+            danma = tr['danma']  # 用开奖前落盘的官方预测
+            break
+
     return {
         'data_info': {'n_issues': len(issues), 'first': issues[0], 'last': issues[-1]},
         'next_issue': pred['next_issue'],
@@ -78,7 +86,7 @@ def build_data():
         'last_draw': last_draw,
         'updated': datetime.datetime.now(BJT).strftime('%Y-%m-%d %H:%M'),
         'pool_size': bf.get('pool_size'),
-        'danma': pred['danma'],
+        'danma': danma,
         'members': [{'digit': m['digit'], 'formula': m['formula'], 'hits': m['hits'],
                      'rate': round(m['hits'] / 200 * 100, 2), 'explain': explain(m['formula'])}
                     for m in members],
