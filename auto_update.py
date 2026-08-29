@@ -75,7 +75,10 @@ def main():
 
     # 页面是否需要重建：数据新增 / 5胆组变化 / 回填或新记录发生
     track_changed = (filled > 0 or recorded)
-    if added == 0 and not combo_changed and not track_changed:
+    force_rebuild = os.environ.get('FORCE_REBUILD', '0') == '1'
+    if force_rebuild:
+        print("\n[4/5] FORCE_REBUILD=1，强制重建页面")
+    elif added == 0 and not combo_changed and not track_changed:
         print("\n[4/5] 数据/5胆组/预测跟踪均无变化，跳过页面生成（零无效更新）")
     else:
         print("\n[4/5] 200期回测 + 生成网页")

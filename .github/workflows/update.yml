@@ -13,6 +13,11 @@ on:
         required: false
         default: 'false'
         type: boolean
+      force_rebuild:
+        description: '强制重建页面（用最新预测跟踪数据重新生成HTML）'
+        required: false
+        default: 'false'
+        type: boolean
 
 # 并发保护：三重cron若撞车，取消旧运行，只保留最新一次
 concurrency:
@@ -47,6 +52,8 @@ jobs:
         run: pip install "numpy>=1.26,<3"
 
       - name: 运行更新脚本(多源降级+期号校验+905万穷举选5胆+回测+生成页面)
+        env:
+          FORCE_REBUILD: ${{ inputs.force_rebuild }}
         run: python auto_update.py || exit 1
 
       - name: 检查是否有真实数据更新
