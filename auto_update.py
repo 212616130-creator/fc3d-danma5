@@ -75,7 +75,7 @@ def main():
 
     # 页面是否需要重建：数据新增 / 5胆组变化 / 回填或新记录发生
     track_changed = (filled > 0 or recorded)
-    force_rebuild = os.environ.get('FORCE_REBUILD', '0') == '1'
+    force_rebuild = os.environ.get('FORCE_REBUILD', '0').strip().lower() in ('1', 'true', 'yes')
     if force_rebuild:
         print("\n[4/5] FORCE_REBUILD=1，强制重建页面")
     elif added == 0 and not combo_changed and not track_changed:
