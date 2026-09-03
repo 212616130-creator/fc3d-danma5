@@ -1,36 +1,36 @@
 {
   "window": 200,
   "data_info": {
-    "n_issues": 8741,
+    "n_issues": 8742,
     "first": "2002001",
-    "last": "2026235"
+    "last": "2026236"
   },
   "pool_size": 9053550,
   "chosen": [
     {
-      "digit": 0,
-      "formula": "2*g+3*sp+3",
-      "hits": 84
-    },
-    {
       "digit": 1,
-      "formula": "2*sum2+3*mxmn+2*ds+2",
-      "hits": 84
+      "formula": "3*b+2*sp+1*bL+7",
+      "hits": 85
     },
     {
-      "digit": 2,
-      "formula": "2*b2+2*bsg+2*d12+4",
-      "hits": 87
-    },
-    {
-      "digit": 5,
+      "digit": 3,
       "formula": "3*g3+1*mn+3*So+5",
       "hits": 85
     },
     {
+      "digit": 4,
+      "formula": "2*g+3*sp+3",
+      "hits": 85
+    },
+    {
       "digit": 6,
+      "formula": "2*sg+3*P2+1*db+0",
+      "hits": 85
+    },
+    {
+      "digit": 7,
       "formula": "3*s3+2*so+1*gL+7",
-      "hits": 86
+      "hits": 87
     }
   ],
   "chosen_rate": 96.0,
@@ -41,7 +41,6 @@
     2,
     3,
     4,
-    5,
     6,
     7,
     8,
@@ -49,56 +48,51 @@
   ],
   "cand_hits": {
     "0": 84,
-    "1": 84,
+    "1": 85,
     "2": 87,
-    "3": 83,
-    "4": 84,
-    "5": 85,
-    "6": 86,
-    "7": 83,
-    "8": 83,
-    "9": 86
+    "3": 85,
+    "4": 85,
+    "6": 85,
+    "7": 87,
+    "8": 87,
+    "9": 83
   },
   "digit_best": {
     "0": {
-      "formula": "2*g+3*sp+3",
+      "formula": "3*g+2*bo+2*S3+7",
       "hits": 84
     },
     "1": {
-      "formula": "2*sum2+3*mxmn+2*ds+2",
-      "hits": 84
+      "formula": "3*b+2*sp+1*bL+7",
+      "hits": 85
     },
     "2": {
       "formula": "2*b2+2*bsg+2*d12+4",
       "hits": 87
     },
     "3": {
-      "formula": "1*s2+1*d3+1*gpr+8",
-      "hits": 83
-    },
-    "4": {
-      "formula": "2*so+2*bsg2+2*gpr+4",
-      "hits": 84
-    },
-    "5": {
       "formula": "3*g3+1*mn+3*So+5",
       "hits": 85
     },
+    "4": {
+      "formula": "2*g+3*sp+3",
+      "hits": 85
+    },
     "6": {
-      "formula": "3*s3+2*so+1*gL+7",
-      "hits": 86
+      "formula": "2*sg+3*P2+1*db+0",
+      "hits": 85
     },
     "7": {
-      "formula": "2*b+1*md+3*S3+9",
-      "hits": 83
+      "formula": "3*s3+2*so+1*gL+7",
+      "hits": 87
     },
     "8": {
-      "formula": "2*sum4+2*bo+2*sL+2",
-      "hits": 83
+      "formula": "2*bp+1*d13+2*mxmn+8",
+      "hits": 87
     },
     "9": {
-      "formula": "1*d3+1*SL+3*gpr+9",
-      "hits": 86
+      "formula": "2*sum2+3*mxmn+2*ds+2",
+      "hits": 83
     }
   }
 }
