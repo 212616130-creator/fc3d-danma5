@@ -8,4 +8,5 @@
 {"issue": "2026237", "danma": [1, 2, 7, 8, 9], "predicted_at": "2026-09-03 22:07", "draw": [8, 5, 4], "hit": true, "filled_at": "2026-09-04 22:07"}
 {"issue": "2026238", "danma": [1, 2, 3, 6, 7], "predicted_at": "2026-09-04 22:07", "draw": [8, 9, 9], "hit": false, "filled_at": "2026-09-05 22:07"}
 {"issue": "2026239", "danma": [0, 4, 5, 6, 8], "predicted_at": "2026-09-05 22:07", "draw": [0, 0, 2], "hit": true, "filled_at": "2026-09-06 22:07"}
-{"issue": "2026240", "danma": [0, 1, 5, 6, 8], "predicted_at": "2026-09-06 22:07"}
+{"issue": "2026240", "danma": [0, 1, 5, 6, 8], "predicted_at": "2026-09-06 22:07", "draw": [9, 8, 1], "hit": true, "filled_at": "2026-09-07 22:07"}
+{"issue": "2026241", "danma": [0, 2, 5, 6, 8], "predicted_at": "2026-09-07 22:07"}
