@@ -1,21 +1,21 @@
 {
   "window": 200,
   "data_info": {
-    "n_issues": 8758,
+    "n_issues": 8759,
     "first": "2002001",
-    "last": "2026252"
+    "last": "2026253"
   },
   "pool_size": 9053550,
   "chosen": [
     {
-      "digit": 1,
-      "formula": "3*g3+3*SL+1*spr+3",
+      "digit": 2,
+      "formula": "3*b+1*b2+1*d23+8",
       "hits": 83
     },
     {
-      "digit": 2,
-      "formula": "1*s3+1*so+1*gh+7",
-      "hits": 86
+      "digit": 3,
+      "formula": "3*g3+3*SL+1*spr+3",
+      "hits": 84
     },
     {
       "digit": 5,
@@ -23,14 +23,14 @@
       "hits": 86
     },
     {
-      "digit": 7,
-      "formula": "3*b+3*sL+3*SL+7",
-      "hits": 83
+      "digit": 6,
+      "formula": "1*s3+1*so+1*gh+7",
+      "hits": 86
     },
     {
-      "digit": 8,
-      "formula": "3*b+3*gL+2*ds+1",
-      "hits": 84
+      "digit": 9,
+      "formula": "1*d13+1*S3+3*dS+5",
+      "hits": 86
     }
   ],
   "chosen_rate": 97.0,
@@ -39,6 +39,7 @@
     0,
     1,
     2,
+    3,
     4,
     5,
     6,
@@ -47,52 +48,57 @@
     9
   ],
   "cand_hits": {
-    "0": 86,
-    "1": 83,
-    "2": 86,
-    "4": 84,
+    "0": 85,
+    "1": 86,
+    "2": 83,
+    "3": 84,
+    "4": 85,
     "5": 86,
-    "6": 83,
+    "6": 86,
     "7": 83,
-    "8": 84,
-    "9": 85
+    "8": 82,
+    "9": 86
   },
   "digit_best": {
     "0": {
+      "formula": "1*mx+2*bsg2+1*dS+5",
+      "hits": 85
+    },
+    "1": {
       "formula": "1*b3+2*mxmn+1*dg+6",
       "hits": 86
     },
-    "1": {
-      "formula": "3*g3+3*SL+1*spr+3",
+    "2": {
+      "formula": "3*b+1*b2+1*d23+8",
       "hits": 83
     },
-    "2": {
-      "formula": "1*s3+1*so+1*gh+7",
-      "hits": 86
+    "3": {
+      "formula": "3*g3+3*SL+1*spr+3",
+      "hits": 84
     },
     "4": {
-      "formula": "2*P2+1*bp+1*gh+0",
-      "hits": 84
+      "formula": "2*mn+3*sum4+1*gpr+4",
+      "hits": 85
     },
     "5": {
       "formula": "3*bg+1*bsg+1*S3+4",
       "hits": 86
     },
     "6": {
-      "formula": "2*b2+2*S+3*mx+5",
-      "hits": 83
+      "formula": "1*s3+1*so+1*gh+7",
+      "hits": 86
     },
     "7": {
-      "formula": "3*b+3*sL+3*SL+7",
+      "formula": "2*g3+2*d2+1*gL+0",
       "hits": 83
     },
     "8": {
-      "formula": "3*b+3*gL+2*ds+1",
-      "hits": 84
+      "formula": "2*s+2*d3+3*so+3",
+      "hits": 82
     },
     "9": {
-      "formula": "1*mx+2*bsg2+1*dS+5",
-      "hits": 85
+      "formula": "1*d13+1*S3+3*dS+5",
+      "hits": 86
     }
   }
 }
