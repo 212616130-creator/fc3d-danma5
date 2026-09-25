@@ -26,4 +26,5 @@
 {"issue": "2026255", "danma": [1, 4, 5, 7, 9], "predicted_at": "2026-09-21 22:07", "draw": [6, 9, 9], "hit": true, "filled_at": "2026-09-23 01:53"}
 {"issue": "2026256", "danma": [2, 4, 6, 7, 8], "predicted_at": "2026-09-23 01:53", "draw": [0, 5, 1], "hit": false, "filled_at": "2026-09-24 02:07"}
 {"issue": "2026257", "danma": [0, 2, 4, 6, 9], "predicted_at": "2026-09-24 02:07", "draw": [4, 8, 6], "hit": true, "filled_at": "2026-09-25 02:07"}
-{"issue": "2026258", "danma": [0, 4, 5, 6, 8], "predicted_at": "2026-09-25 02:07"}
+{"issue": "2026258", "danma": [0, 4, 5, 6, 8], "predicted_at": "2026-09-25 02:07", "draw": [6, 3, 5], "hit": true, "filled_at": "2026-09-26 02:11"}
+{"issue": "2026259", "danma": [2, 3, 6, 8, 9], "predicted_at": "2026-09-26 02:11"}
