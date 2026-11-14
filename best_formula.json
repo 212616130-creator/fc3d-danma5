@@ -1,40 +1,40 @@
 {
   "window": 200,
   "data_info": {
-    "n_issues": 8809,
+    "n_issues": 8810,
     "first": "2002001",
-    "last": "2026303"
+    "last": "2026304"
   },
   "pool_size": 9053550,
   "chosen": [
     {
-      "digit": 2,
-      "formula": "3*b2+3*s3+1*dg+1",
+      "digit": 0,
+      "formula": "3*s3+1*d1+2*go+4",
       "hits": 84
     },
     {
-      "digit": 3,
-      "formula": "2*g2+3*bL+1*gpr+9",
-      "hits": 83
-    },
-    {
-      "digit": 6,
-      "formula": "3*b+3*gL+2*ds+1",
-      "hits": 86
-    },
-    {
-      "digit": 8,
+      "digit": 1,
       "formula": "1*b+1*gL+3*ds+1",
       "hits": 84
     },
     {
-      "digit": 9,
-      "formula": "1*b+1*b2+1*s3+1",
+      "digit": 2,
+      "formula": "1*d1+1*sh+3*gh+7",
+      "hits": 85
+    },
+    {
+      "digit": 6,
+      "formula": "3*b3+1*bg+3*S3+1",
+      "hits": 83
+    },
+    {
+      "digit": 8,
+      "formula": "1*s+2*g3+3*sp+6",
       "hits": 84
     }
   ],
-  "chosen_rate": 94.0,
-  "chosen_hits": 188,
+  "chosen_rate": 94.5,
+  "chosen_hits": 189,
   "cand_digits": [
     0,
     1,
@@ -50,55 +50,55 @@
   "cand_hits": {
     "0": 84,
     "1": 84,
-    "2": 84,
-    "3": 83,
-    "4": 82,
-    "5": 82,
-    "6": 86,
-    "7": 83,
+    "2": 85,
+    "3": 86,
+    "4": 84,
+    "5": 83,
+    "6": 83,
+    "7": 84,
     "8": 84,
-    "9": 84
+    "9": 82
   },
   "digit_best": {
     "0": {
-      "formula": "1*s+2*g3+3*sp+6",
+      "formula": "3*s3+1*d1+2*go+4",
       "hits": 84
     },
     "1": {
-      "formula": "2*b2+1*d1+1*bp+1",
-      "hits": 84
-    },
-    "2": {
-      "formula": "3*b2+3*s3+1*dg+1",
-      "hits": 84
-    },
-    "3": {
-      "formula": "2*g2+3*bL+1*gpr+9",
-      "hits": 83
-    },
-    "4": {
-      "formula": "1*g+2*s2+1*bg+6",
-      "hits": 82
-    },
-    "5": {
-      "formula": "3*S+2*So+1*gL+4",
-      "hits": 82
-    },
-    "6": {
-      "formula": "3*b+3*gL+2*ds+1",
-      "hits": 86
-    },
-    "7": {
-      "formula": "3*b3+1*bg+3*S3+1",
-      "hits": 83
-    },
-    "8": {
       "formula": "1*b+1*gL+3*ds+1",
       "hits": 84
     },
-    "9": {
+    "2": {
+      "formula": "1*d1+1*sh+3*gh+7",
+      "hits": 85
+    },
+    "3": {
+      "formula": "3*b+3*gL+2*ds+1",
+      "hits": 86
+    },
+    "4": {
+      "formula": "3*g+3*SL+3*bh+3",
+      "hits": 84
+    },
+    "5": {
+      "formula": "2*g2+3*bL+1*gpr+9",
+      "hits": 83
+    },
+    "6": {
+      "formula": "3*b3+1*bg+3*S3+1",
+      "hits": 83
+    },
+    "7": {
       "formula": "1*b+1*b2+1*s3+1",
       "hits": 84
+    },
+    "8": {
+      "formula": "1*s+2*g3+3*sp+6",
+      "hits": 84
+    },
+    "9": {
+      "formula": "3*S+2*So+1*gL+4",
+      "hits": 82
     }
   }
 }
